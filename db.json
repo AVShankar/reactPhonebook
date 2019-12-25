@@ -1,0 +1,25 @@
+{
+  "contacts": [
+    {
+      "name": "Shankar V",
+      "phone": "9876543210",
+      "address": "TN, India",
+      "pincode": "600 006",
+      "id": 1
+    },
+    {
+      "name": "Krishna",
+      "phone": "9898765432",
+      "address": "India",
+      "pincode": "100 001",
+      "id": 2
+    },
+    {
+      "name": "Rev",
+      "phone": "9876543210",
+      "address": "TN",
+      "pincode": "300 003",
+      "id": 3
+    }
+  ]
+}
