@@ -5,18 +5,21 @@ class Form extends React.Component {
     constructor(props)
     {
         super(props)
-        this.state = { newContact: [{ name: "", phone: "", address: "", pincode: "" }] }
+        this.state = { name: "", phone: "", address: "", pincode: "" }
     }
-  handleChange(e) 
+  handleChange() 
   {
     this.setState({
-        [e.target.name] : e.target.value
-    })
+      name: this.refs.name.value,
+      phone: this.refs.phone.value,
+      address: this.refs.address.value,
+      pincode: this.refs.pincode.value
+  })
   }
 
   send()
   {
-    this.props.addContact(this.state.newContact)
+    this.props.addContact(this.state)
     this.setState({
         newContact: [{ name: "", phone: "", address: "", pincode: "" }]
     })
@@ -32,7 +35,6 @@ class Form extends React.Component {
       <div className="table-bordered">
         <br />
         <h3>Add New Contact:</h3>
-        <form>
           <div className="form-group">
             <label>Name</label>
             <input
@@ -89,7 +91,6 @@ class Form extends React.Component {
             style={{ alignContent: "center" }}
             onClick={this.unMount.bind(this)}
           />
-        </form>
         <br />
       </div>
     );
