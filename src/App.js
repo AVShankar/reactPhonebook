@@ -19,19 +19,23 @@ class App extends React.Component
     })
   }
 
-  addContact(newContact)
+  addContact = (...newContact) => 
   {
     axios.post("http://localhost:8080/contacts",
     {
-      name: newContact.name, phone: newContact.phone, address: newContact.address, pincode: newContact.pincode 
-    })
+      name: newContact[0].name, phone: newContact[0].phone, address: newContact[0].address, pincode: newContact[0].pincode 
+    }).then(newContact => {
+      this.setState({
+        allContacts: [...this.state.allContacts, newContact.data]
+      })
+    }).catch(err => console.log(err))
   }
 
-  handleDelete(i){
+  handleDelete = (i) => {
     axios.delete("http://localhost:8080/contacts/"+i.id).then(success => {
       console.log('Successfully delted')
       this.setState({
-        allContacts:this.state.list.filter(e => e !== i)
+        allContacts: this.state.allContacts.filter(e => e !== i)
     })
     }).catch(err => console.log(err.message))
   }
