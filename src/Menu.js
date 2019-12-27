@@ -1,28 +1,31 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Form from './Form'
+import React from "react";
 
-class Menu extends React.Component
-{
+class Contacts extends React.Component {
 
-    getForm()
-    {
-        ReactDOM.render(<Form addContact={this.props.addContact} />, document.getElementById('form'))
-    }
+  render() 
+  {
 
-    render()
-    {
-        return(
-            <div>
-                <br></br><br></br>
-                <nav className="navbar navbar-light">
-                    <p className="navbar-brand">My Contacts</p>
-                    <button onClick={this.getForm.bind(this)} className="btn btn-outline-success my-2 my-sm-0" type="submit">Add Contact</button>
-                </nav>
-                <div id="form"></div>
+    return (
+      <div>
+        <br />
+        <div className="row">
+        {this.props.contactDetails.map(i => {
+          return (
+            <div className="card col-sm-3" key={i.name} style={{ width: "18rem" }}>
+              <div className="card-body">
+                <h5 className="card-title">{i.name}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">{i.phone}</h6>
+                <p className="card-text">{i.address}</p>
+                <p className="card-text">{i.pincode}</p>
+                <button id={i.id} className="btn btn-danger" onClick={this.props.handleDelete.bind(this, i)}>Delete</button>
+              </div>
             </div>
-        )
-    }
+          );
+        })}
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Menu;
+export default Contacts;
